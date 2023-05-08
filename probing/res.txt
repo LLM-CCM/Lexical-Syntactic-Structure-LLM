@@ -1,0 +1,12 @@
+best reg = 0.00; dev score = 32.4200; test score = 32.0800;
+best reg = 0.00; dev score = 34.7600; test score = 34.6700;
+best reg = 0.00; dev score = 34.2200; test score = 34.4300;
+best reg = 0.00; dev score = 33.2600; test score = 33.7300;
+best reg = 0.00; dev score = 34.1000; test score = 34.1900;
+best reg = 0.00; dev score = 34.2800; test score = 35.0300;
+best reg = 0.00; dev score = 35.0900; test score = 35.3500;
+best reg = 0.00; dev score = 33.7700; test score = 34.4600;
+best reg = 0.00; dev score = 33.9700; test score = 34.6800;
+best reg = 0.00; dev score = 34.3900; test score = 34.2400;
+best reg = 0.00; dev score = 33.2000; test score = 33.2000;
+best reg = 0.00; dev score = 31.6200; test score = 31.4700;

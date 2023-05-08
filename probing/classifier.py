@@ -67,39 +67,43 @@ def classify(args, train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num
   clf = MLP(classifier_config, inputdim=feat_dim, nclasses=num_classes, l2reg=opt_prop[0], seed=args.seed, cudaEfficient=True)
   clf.fit(train_X, train_y, validation_data=(dev_X, dev_y))
   test_acc = round(100*clf.score(test_X, test_y), 2)
-  print("best reg = %.2f; dev score = %.4f; test score = %.4f;"%(opt_prop[0], dev_acc, test_acc))
+  strr = "best reg = %.2f; dev score = %.4f; test score = %.4f;\n"%(opt_prop[0], dev_acc, test_acc)
+  print(strr)
+  return strr
 
-def main():
-  parser = argparse.ArgumentParser(description="Probing classifier")
-  parser.add_argument("--labels_file", 
-                      type=str, 
-                      default=None, 
-                      help="file containing probing text and labels")
-  parser.add_argument("--feats_file", 
-                      type=str,
-                      default=None, 
-                      help="file containing bert features for a probing task")
-  parser.add_argument('--layer', 
-                      type=int, 
-                      default=0, 
-                      help='bert layer id to probe')
-  parser.add_argument('--nhid', 
-                      type=int, 
-                      default=50, 
-                      help='hidden size of MLP')
-  parser.add_argument('--dropout', 
-                      type=float, 
-                      default=0.0, 
-                      help='dropout prob. value')
-  parser.add_argument('--seed', 
-                      type=int, 
-                      default=123, 
-                      help='seed value to be set manually')
+def main_prog(args, train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num_classes):
+  # parser = argparse.ArgumentParser(description="Probing classifier")
+  # parser.add_argument("--labels_file", 
+  #                     type=str, 
+  #                     default=None, 
+  #                     help="file containing probing text and labels")
+  # parser.add_argument("--feats_file", 
+  #                     type=str,
+  #                     default=None, 
+  #                     help="file containing bert features for a probing task")
+  # parser.add_argument('--layer', 
+  #                     type=int, 
+  #                     default=0, 
+  #                     help='bert layer id to probe')
+  # parser.add_argument('--nhid', 
+  #                     type=int, 
+  #                     default=50, 
+  #                     help='hidden size of MLP')
+  # parser.add_argument('--dropout', 
+  #                     type=float, 
+  #                     default=0.0, 
+  #                     help='dropout prob. value')
+  # parser.add_argument('--seed', 
+  #                     type=int, 
+  #                     default=123, 
+  #                     help='seed value to be set manually')
 
-  args = parser.parse_args()
-  print(args)
-  train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num_classes = load(args)
-  classify(args, train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num_classes)
+  # args = parser.parse_args()
+  # print(args)
+  # train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num_classes = load(args)
+  pb = classify(args, train_X, train_y, dev_X, dev_y, test_X, test_y, feat_dim, num_classes)
+  with open("res_sub.txt", "a") as myfile:
+    myfile.write(pb)
 
-if __name__ == "__main__":
-  main()
+# if __name__ == "__main__":
+#   main()
